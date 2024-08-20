@@ -1,0 +1,16 @@
+body{
+  background-color:white;
+}
+.navbar{
+  background-color:rgb(255, 77, 157);
+  width:auto;
+  height:auto;
+}
+.hover-effect:hover {
+  border:rgb(255, 77, 157);;
+  transition:all 3s;
+}
+
+.link-opacity-75-hover:hover {
+  opacity: 0.80; /* Make the link slightly transparent on hover */
+}
