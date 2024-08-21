@@ -23,7 +23,12 @@ body{
   color:rgb(164, 15, 82);;
 }
 
-
+.footer{
+  width:100%;
+  height:auto;
+  color:white;
+  background-color: rgb(184, 53, 112);
+}
 .custom-list li::marker {
   color: rgb(255, 77, 157);
 }
@@ -40,6 +45,14 @@ body{
   margin-left: 5rem;;
   height:auto;
 }
+.loginForm{
+  color:rgb(184, 53, 112);;
+}
+.SignInBorder{
+  border:1px;
+  border-color:rgb(184, 53, 112);
+}
+
 @media(max-width:768px){
   .offcanvas ul.nav-item li.nav-link{
       width:100%;

@@ -11,7 +11,7 @@ export default function HomeScreen() {
             />
             <div className="my-5 d-flex flex-column justify-content-center align-items-center mx-4">
                 <h1 className="fs-1 text-black text-center opacity-100 h1">
-                It's the food and groceries you love, delivered 
+                It's the food and groceries you love, we delivered 
                 <span>
                     <img src='https://cdn-icons-png.flaticon.com/256/12114/12114266.png' height='70' width='70' alt="Icon"/>
                 </span>
