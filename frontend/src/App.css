@@ -12,5 +12,53 @@ body{
 }
 
 .link-opacity-75-hover:hover {
-  opacity: 0.80; /* Make the link slightly transparent on hover */
+  opacity: 0.80; 
+}
+.offcanvas{
+  background-color:rgb(255, 77, 157);
+  color:white;
+  text-decoration:none;
+}
+.home-heading,.faq-heading{
+  color:rgb(164, 15, 82);;
+}
+
+
+.custom-list li::marker {
+  color: rgb(255, 77, 157);
+}
+.image-container{
+  
+  height:35rem;
+  overflow: hidden;
+  background-image:url('https://images.deliveryhero.io/image/foodpanda/home-vendor-pk.jpg?width=1400&height=896');
+}
+.image-card{
+  opacity:1.3;
+  margin-top:10rem;
+  width:38rem;
+  margin-left: 5rem;;
+  height:auto;
+}
+@media(max-width:768px){
+  .offcanvas ul.nav-item li.nav-link{
+      width:100%;
+  }
+  .responsive-img {
+    width:50%;
+   }
+   .image-card{
+    margin-left:0.3rem;
+    margin-right:0.3rem;
+    width:30rem;
+    height:auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-img {
+    width: 300px; 
+    height: auto; 
+  }
+  
 }
