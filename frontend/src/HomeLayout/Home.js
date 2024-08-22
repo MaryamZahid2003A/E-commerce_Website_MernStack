@@ -3,8 +3,30 @@ import '../App.css';
 import HomeScreen from './HomeScreen';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLoginMutation } from '../store/UserApiSlice';
+import { setCredentials } from '../store/UserSlice';
 
 export default function Home() {
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const [name,setName]=useState('')
+  const dispatch=useDispatch();
+  const {login}=useLoginMutation();
+
+  const handleSubmitLogin=async()=>{
+      const res=await login({email,password}).unwrap();
+      dispatch(setCredentials({...res}))
+      console.log('successfully login')
+
+  }
+  const handleSubmitSignUp=async()=>{
+    const res=await login({name,email,password}).unwrap();
+    dispatch(setCredentials({...res}))
+    console.log('successfully login')
+
+}
   return (
     <div>
       <nav className="navbar sticky">
@@ -66,9 +88,9 @@ export default function Home() {
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
-            <form>
-              <input className="form-control my-3" placeholder="E-mail" type="email" required />
-              <input className="form-control my-3" placeholder="Password" type="password" required />
+            <form onSubmit={handleSubmitLogin}>
+              <input className="form-control my-3" placeholder="E-mail" type="email" required  value={email} onChange={(e)=>setEmail(e.target.value)}/>
+              <input className="form-control my-3" placeholder="Password" type="password" required value={password} onChange={(e)=>setPassword(e.target.value)} />
               <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
             <a className='text-black fs-6 py-4 text-decoration-none pointer'   data-bs-toggle="modal" data-bs-target="#signUpModal">New Registration? <span className='loginForm fs-6'>Sign Up </span></a>
@@ -86,7 +108,7 @@ export default function Home() {
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
-                  <form>
+                  <form onSubmit={handleSubmitSignUp}>
                     <input className="form-control my-3" type="text" placeholder="Name" required/>
                     <input className="form-control my-3" type="email" placeholder="E-mail" required />
                     <input className="form-control my-3" type="password" placeholder="Password" required />
