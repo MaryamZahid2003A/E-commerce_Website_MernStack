@@ -5,7 +5,7 @@ import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLoginMutation } from '../store/UserApiSlice';
+import { useLoginMutation,useRegisterMutation } from '../store/UserApiSlice';
 import { setCredentials } from '../store/UserSlice';
 
 export default function Home() {
@@ -13,18 +13,32 @@ export default function Home() {
   const [password,setPassword]=useState('')
   const [name,setName]=useState('')
   const dispatch=useDispatch();
-  const {login}=useLoginMutation();
+  const [login]=useLoginMutation();
+  const [register]=useRegisterMutation();
 
-  const handleSubmitLogin=async()=>{
-      const res=await login({email,password}).unwrap();
-      dispatch(setCredentials({...res}))
-      console.log('successfully login')
+  const handleSubmitLogin=async(e)=>{
+    try{
+      e.preventDefault();
+      const res = await login({ email, password }).unwrap();
+      dispatch(setCredentials(res));
+      console.log('successfully logged in');
+    }
+    catch(error){
+      console.log(error?.data?.message || error.message)
+    }
+     
 
   }
-  const handleSubmitSignUp=async()=>{
-    const res=await login({name,email,password}).unwrap();
-    dispatch(setCredentials({...res}))
-    console.log('successfully login')
+  const handleSubmitSignUp=async(e)=>{
+    try{
+      e.preventDefault();
+      const res = await register({name,email, password }).unwrap();
+      dispatch(setCredentials(res));
+      console.log('successfully signed in');
+    }
+    catch(error){
+      console.log(error?.data?.message || error.message)
+    }
 
 }
   return (
@@ -91,11 +105,12 @@ export default function Home() {
             <form onSubmit={handleSubmitLogin}>
               <input className="form-control my-3" placeholder="E-mail" type="email" required  value={email} onChange={(e)=>setEmail(e.target.value)}/>
               <input className="form-control my-3" placeholder="Password" type="password" required value={password} onChange={(e)=>setPassword(e.target.value)} />
-              <button type="submit" className="btn btn-primary">Sign In</button>
+              <button  className="btn btn-primary">Sign In</button>
             </form>
-            <a className='text-black fs-6 py-4 text-decoration-none pointer'   data-bs-toggle="modal" data-bs-target="#signUpModal">New Registration? <span className='loginForm fs-6'>Sign Up </span></a>
 
           </div>
+        <a className='text-black fs-6 py-4 text-decoration-none pointer mx-3'   data-bs-toggle="modal" data-bs-target="#signUpModal">New Registration? <span className='loginForm fs-6'>Sign Up </span></a>
+
         </div>
       </div>
     </div>
@@ -109,15 +124,16 @@ export default function Home() {
                 </div>
                 <div className="modal-body">
                   <form onSubmit={handleSubmitSignUp}>
-                    <input className="form-control my-3" type="text" placeholder="Name" required/>
-                    <input className="form-control my-3" type="email" placeholder="E-mail" required />
-                    <input className="form-control my-3" type="password" placeholder="Password" required />
-                    <button type="submit" className="btn btn-primary">Sign Up</button>
-
+                    <input className="form-control my-3" type="text" placeholder="Name" required value={name} onChange={(e)=>setName(e.target.value)}/>
+                    <input className="form-control my-3" type="email" placeholder="E-mail" required  value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                    <input className="form-control my-3" type="password" placeholder="Password" required  value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                    <button className="btn btn-primary">Sign Up</button>
                   </form>
-                  <a className='text-black fs-6 py-4 text-decoration-none pointer'   data-bs-toggle="modal" data-bs-target="#loginModal">Already Exist ? <span className='loginForm fs-6'>Login </span></a>
                 </div>
+              <a className='text-black fs-6 py-4 text-decoration-none pointer mx-3'   data-bs-toggle="modal" data-bs-target="#loginModal">Already Exist ? <span className='loginForm fs-6'>Login </span></a>
+
               </div>
+
             </div>
           </div>
 

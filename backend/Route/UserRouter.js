@@ -3,7 +3,7 @@ import { register,Login } from "../controller/UserController.js";
 const router=express.Router();
 
 router.post('/register',register)
-router.get('/login',Login)
+router.post('/login',Login)
 
 
 export default router;
