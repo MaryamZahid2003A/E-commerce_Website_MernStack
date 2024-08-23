@@ -56,6 +56,13 @@ const Login=expressAsyncHandler(async(req,res)=>{
         console.error(error)
     }
 })
-//check profile
 
-export {register,Login}
+const Logout=expressAsyncHandler(async(req,res)=>{
+    res.cookie('jwt','',{
+        httpOnly : true,
+        expires: new Date (0)
+    })
+    res.status(200).json("Logout Successfully ! ")
+})
+
+export {register,Login,Logout}

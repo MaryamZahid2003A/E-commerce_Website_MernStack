@@ -11,9 +11,14 @@ const UserSlice=createSlice({
         setCredentials :(state,action)=>{
             state.userInfo=action.payload
             localStorage.setItem('userInfo',JSON.stringify(action.payload))
+        },
+        setLogout : (state,action)=>{
+            state.userInfo=null;
+            localStorage.removeItem('userInfo')
+            console.log('inside the slice')
         }
     }
 })
 
-export const {setCredentials}=UserSlice.actions;
+export const {setCredentials,setLogout}=UserSlice.actions;
 export {UserSlice}

@@ -12,7 +12,9 @@ body{
 }
 
 .link-opacity-75-hover:hover {
-  opacity: 0.80; 
+  border-bottom:2px solid white;
+  transition:all 3s;
+
 }
 .offcanvas{
   background-color:rgb(255, 77, 157);
