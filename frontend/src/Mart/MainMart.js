@@ -5,7 +5,8 @@ import { setLogout } from '../store/UserSlice'
 import { useLogoutMutation } from '../store/UserApiSlice'
 import { useDispatch } from 'react-redux'
 
-export default function MainMart() {
+
+export default function MainMart(props) {
     const navigate=useNavigate()
     const dispatch=useDispatch()
     const {userInfo}=useSelector((state)=>state.auth1)
@@ -23,7 +24,7 @@ export default function MainMart() {
         }
       }
   return (
-    <div className='bg-black w-100 h-100'>
+    <div className='bg-light w-100 h-100'>
       <nav className="navbar sticky">
         <div className="container-fluid navbar-expand-lg">
           <div className="d-flex flex-row navbar-brand">
@@ -72,6 +73,32 @@ export default function MainMart() {
           </div>: <p>hello</p>}
         </div>
       </nav>
+      <div>
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://cdn.shopify.com/s/files/1/0070/7032/files/ecommerce_20shopping_20cart.png?v=1689527835" class="d-block" alt="..." height="300"  width="300"  />
+            </div>
+            <div class="carousel-item">
+              <img src="https://www.linnworks.com/wp-content/uploads/2021/01/compare-shopping-cart-platforms-scaled.jpeg" class="d-block" alt="..."  height="300" 
+              width="300"  />
+            </div>
+            <div class="carousel-item">
+              <img src="https://www.trafiki-ecommerce.com/wp-content/uploads/2022/04/UX-Shopping-cart-e1658480613207.jpg" class="d-block" alt="..." height="300" 
+              width="300"  />
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          </div>
+          </div>
+      
     </div>
   )
 }

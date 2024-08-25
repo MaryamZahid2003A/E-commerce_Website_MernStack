@@ -12,6 +12,7 @@ import {useNavigate} from 'react-router-dom'
 
 export default function Home() {
   const [email,setEmail]=useState('')
+  const [address,setAddress]=useState('')
   const [password,setPassword]=useState('')
   const [name,setName]=useState('')
   const dispatch=useDispatch();

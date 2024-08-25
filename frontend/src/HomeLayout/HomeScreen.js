@@ -1,6 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
+import { useLoginMutation,useRegisterMutation,useLogoutMutation } from '../store/UserApiSlice';
+import { setCredentials,setLogout} from '../store/UserSlice';
+import { useDispatch } from 'react-redux';
+import MainMart from '../Mart/MainMart';
+
 
 export default function HomeScreen() {
+  const [address,setAddress]=useState('')
+    const {userInfo}=useSelector((state)=>state.auth1)
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
+    const [name,setName]=useState('')
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
+    const [login]=useLoginMutation();
+
+    const handleSubmitLogin=async(e)=>{
+        try{
+          e.preventDefault();
+          const res = await login({ email, password }).unwrap();
+          dispatch(setCredentials(res));
+          navigate('/mart')
+          console.log('successfully logged in');
+        }
+        catch(error){
+          console.log(error?.data?.message || error.message)
+        }
+    }
+    useEffect=()=>{
+        localStorage.setItem('address',JSON.stringify(address))
+    }
   return (
     <div>
     <section className="d-flex justify-content-around bg-light flex-wrap">
@@ -17,30 +49,66 @@ export default function HomeScreen() {
                 </span>
                 </h1>
                 <div className="input-group my-3">
-                <input type="text" className="form-control border" placeholder='Enter Address'/>
-                <span className="input-group-text btn btn-primary text-white text-center">Find Food</span>
+                <input type="text" className="form-control border" placeholder='H.No - Street - City - Country ( Address)' required value={address} onChange={(e)=>setAddress(e.target.value)}/>
+                <button className="input-group-text btn btn-primary text-white text-center"  data-bs-toggle="modal" data-bs-target="#loginModal"
+                > Find Food </button>
                 </div>
             </div>
-     
-    </section>
-    <section className=''>
-            <h1 className='fs-2 opacity-100 mx-5 my-5 home-heading'>You prepared the grocery , we handle the rest</h1>
-            <div className='image-container '>
-                <div class="card image-card bg-white" >
-                    <div class="card-body">
-                        <h5 class="card-title text">Pick favourite items from grocery store. <img src='https://cdn-icons-png.flaticon.com/256/8663/8663588.png' height='60' width='60'/></h5>
-                        <br />
-                        <p className='card-text'>Would you like millions of new customers to enjoy your amazing food and groceries? So would we! </p>
-                        <p className='card-text'>It's simple: we list your menu and product lists online, help you process orders, pick them up, and deliver them 
-                                Interested? Let's start Shopping!
-                                <img src='https://cdn-icons-png.flaticon.com/256/7506/7506629.png' height='30' width='30'/>
-                                </p>
-                        <a href="#" class="btn btn-primary">Go Started</a>
+            {!userInfo?
+                    <div className="modal fade" id="loginModal" tabIndex="-1" aria-hidden="true">
+                    <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                        <h1 className="modal-title fs-5 loginForm">Sign In</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                        <form onSubmit={handleSubmitLogin}>
+                            <input className="form-control my-3" type="text" placeholder="Name" required value={name} onChange={(e)=>setName(e.target.value)}/>
+                            <input className="form-control my-3" type="email" placeholder="E-mail" required  value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                            <input className="form-control my-3" type="password" placeholder="Password" required  value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                            <button className="btn btn-primary">Sign Up</button>
+                        </form>
+                        </div>
+
                     </div>
+
                     </div>
-            </div>
-           
-    </section>
+                </div> :  <div className="modal fade" id="#loginModal" tabIndex="-1" aria-hidden="true">
+                    <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                        <h1 className="modal-title fs-5 loginForm">Please Login ! </h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                        <h1>You Must Login Or Signup To Continue Grocery !</h1>
+                        </div>
+
+                    </div>
+
+                    </div>
+                </div>}
+                
+                </section>
+                <section className=''>
+                        <h1 className='fs-2 opacity-100 mx-5 my-5 home-heading'>You prepared the grocery , we handle the rest</h1>
+                        <div className='image-container '>
+                            <div class="card image-card bg-white" >
+                                <div class="card-body">
+                                    <h5 class="card-title text">Pick favourite items from grocery store. <img src='https://cdn-icons-png.flaticon.com/256/8663/8663588.png' height='60' width='60'/></h5>
+                                    <br />
+                                    <p className='card-text'>Would you like millions of new customers to enjoy your amazing food and groceries? So would we! </p>
+                                    <p className='card-text'>It's simple: we list your menu and product lists online, help you process orders, pick them up, and deliver them 
+                                            Interested? Let's start Shopping!
+                                            <img src='https://cdn-icons-png.flaticon.com/256/7506/7506629.png' height='30' width='30'/>
+                                            </p>
+                                    <a href="#" class="btn btn-primary">Go Started</a>
+                                </div>
+                                </div>
+                        </div>
+                    
+                </section>
 
     <section className=''>
         <div>
