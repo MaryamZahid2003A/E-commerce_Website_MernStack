@@ -30,9 +30,7 @@ export default function HomeScreen() {
           console.log(error?.data?.message || error.message)
         }
     }
-    useEffect=()=>{
-        localStorage.setItem('address',JSON.stringify(address))
-    }
+   
   return (
     <div>
     <section className="d-flex justify-content-around bg-light flex-wrap">

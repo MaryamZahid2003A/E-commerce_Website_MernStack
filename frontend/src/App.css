@@ -24,7 +24,30 @@ body{
 .home-heading,.faq-heading{
   color:rgb(164, 15, 82);;
 }
-
+.carousel-check{
+  margin-left:6%;
+  margin-top:2%;
+}
+.homecart {
+  background-color: rgb(254, 254, 254);
+  box-shadow: 0 4px 8px rgba(102, 102, 102, 0.3);
+  height:100%;
+  position: fixed;
+  margin-left:60%;
+  width:30%;
+  top: 20%; 
+  color: rgb(164, 15, 82);
+  padding: 10px; 
+}
+.MainPageMart {
+  display:flex;
+  flex-wrap: wrap;
+  width:50rem;
+}
+.imageCarousel{
+  width:50rem;
+  height:30rem;
+}
 .footer{
   width:100%;
   height:auto;
@@ -54,6 +77,29 @@ body{
   border:1px;
   border-color:rgb(184, 53, 112);
 }
+.categories{
+  width:6rem;
+  height:6rem;
+  background-color: white;
+  margin-left:2rem;
+  text-decoration:none;
+  border:1px solid rgb(218, 213, 213);
+  border-radius:2px;
+  box-shadow: 0 4px 8px rgba(201, 185, 185, 0.3);
+  
+
+}
+.categories:hover{
+  width:6rem;
+  height:6rem;
+  background-color: white;
+  margin-left:2rem;
+  text-decoration:none;
+  border:1px solid rgb(218, 213, 213);
+  border-radius:2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+}
 
 @media(max-width:768px){
   .offcanvas ul.nav-item li.nav-link{
@@ -67,6 +113,19 @@ body{
     margin-right:0.3rem;
     width:30rem;
     height:auto;
+  }
+  .imageCarousel{
+    width:25rem;
+    height:15rem;
+    margin-left:1rem;
+  }
+  .carousel-check{
+    display:flex;
+    justify-content:center;
+  }
+  .MainPageMart {
+   
+    width: 25rem; /* Set the width as you intended */
   }
 }
 
