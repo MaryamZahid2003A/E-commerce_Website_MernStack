@@ -5,6 +5,7 @@ import { setLogout } from '../store/UserSlice';
 import { useLogoutMutation } from '../store/UserApiSlice';
 import { useDispatch } from 'react-redux';
 import MainPageMart from './MainPageMart';
+import Footer from '../HomeLayout/Footer';
 
 export default function MainMart(props) {
     const navigate = useNavigate();
@@ -90,8 +91,7 @@ export default function MainMart(props) {
                 </div>
             </nav>
             <div className="d-flex flex-row justify-content-center ">
-                <div id="carouselExampleAutoplaying" className="carousel slide w-100 carousel-check" data-bs-ride="carousel">
-                    
+                <div id="carouselExampleAutoplaying" className="carousel slide w-100 carousel-check" data-bs-ride="carousel">  
                     <div className="carousel-inner">
                         <div className="carousel-item active ">
                             <img
@@ -102,40 +102,81 @@ export default function MainMart(props) {
                         </div>
                         <div className="carousel-item   ">
                             <img
-                                src="https://images.deliveryhero.io/image/darsktores-pk/SHan-recipe-Banner.png?height=272&dpi=1"
+                                src="https://assets.klikindomaret.com///products/promopage/IC-NOW_BIG-BANNER-KLIK-IDM-1240x445.png"
                                 className="rounded-1 imageCarousel"
                                 alt="Slide 2"
                             />
                         </div>
                         <div className="carousel-item  ">
                             <img
-                                src="https://images.deliveryhero.io/image/darsktores-pk/pepsi-new-banner.png?height=272&dpi=1"
+                                src="https://i.ytimg.com/vi/9jpIaUnLWQY/maxresdefault.jpg"
                                 className="rounded-1 imageCarousel"
                                 alt="Slide 3"
                             />
                         </div>
                         <div className="carousel-item  ">
                             <img
-                                src="https://images.dhmedia.io/image/darsktores-pk/Walls-banner3%20(1).png?height=272&dpi=1"
+                                src="https://www.mycart.pk/media/catalog/product/cache/1/thumbnail/800x/17f82f742ffe127f42dca9de82fb58b1/8/9/8961014014433.png"
                                 className="rounded-1 imageCarousel"
                                 alt="Slide 4"
                             />
                         </div>
                         <div className="carousel-item  ">
                             <img
-                                src="https://images.dhmedia.io/image/darsktores-pk/new%20olpers.jpg?height=272&dpi=1"
+                                src="https://olpersmart.pk/admin_assets/sliders/2024_08_16_slider_66bf3f5cafaf6.jpg"
                                 className="rounded-1 imageCarousel"
                                 alt="Slide 5"
                             />
                         </div>
                     </div>
+                    
                 </div>
-                <section className="    homecart d-none d-lg-block">
+                <section className="homecart d-none d-lg-block">
                     <h1 className='text-center fs-4'>My Cart</h1>
                     <button className='btn btn-primary ' type='button'> checkout</button>
                 </section>
             </div>
             <MainPageMart/>
+            <div className="d-flex flex-row justify-content-center my-5 ">
+                <div id="Autoplaying" className="carousel slide w-100 carousel-check" data-bs-ride="carousel">
+                    <div className="carousel-inner">
+                        <div className="carousel-item active ">
+                            <img
+                                src="https://i.dawn.com/primary/2023/04/28153423f373445.jpg"
+                                className="rounded-1 imageCarousel"
+                                alt="Slide 1"
+                            />
+                        </div>
+                        <div className="carousel-item   ">
+                            <img
+                                src="https://media.licdn.com/dms/image/C4D22AQENdFql20eK1A/feedshare-shrink_800/0/1630659341808?e=2147483647&v=beta&t=U-dLWzrgYSUw8tgFEzFXOZ0PbE4BCico3cKVJKrLjlc"
+                                className="rounded-1 imageCarousel"
+                                alt="Slide 2"
+                            />
+                        </div>
+                        <div className="carousel-item  ">
+                            <img
+                                src="https://highfy.pk/cdn/shop/files/Dove-IntenseRepairShampoo650ML.png?v=1708329574"
+                                className="rounded-1 imageCarousel"
+                                alt="Slide 4"
+                            />
+                        </div>
+                        <div className="carousel-item  ">
+                            <img
+                                src="https://images.deliveryhero.io/image/darsktores-pk/evaaaa-Banner.png?height=272&dpi=1"
+                                className="rounded-1 imageCarousel"
+                                alt="Slide 5"
+                            />
+                        </div>
+                    </div>
+                    
+                </div>
+                <section className="   homecart d-none d-lg-block">
+                    <h1 className='text-center fs-4'>My Cart</h1>
+                    <button className='btn btn-primary ' type='button'> checkout</button>
+                </section>
+            </div>
+            <Footer/>
         </div>
     );
 }
