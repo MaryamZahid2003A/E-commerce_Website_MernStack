@@ -44,6 +44,7 @@ body{
   flex-wrap: wrap;
   width:50rem;
 }
+
 .imageCarousel{
   width:50rem;
   height:30rem;
@@ -53,6 +54,19 @@ body{
   height:auto;
   color:white;
   background-color: rgb(184, 53, 112);
+}
+.ProductImage{
+  box-shadow: 0 4px 8px rgba(183, 179, 179, 0.3);
+  margin-bottom: 0.5rem; 
+  max-width: 100%; 
+  height: auto; 
+}
+.ProductImage:hover{
+  box-shadow: 0 4px 8px rgba(80, 78, 78, 0.3);
+  cursor:pointer;
+  margin-bottom: 0.5rem; 
+    max-width: 100%; 
+    height: auto; 
 }
 .custom-list li::marker {
   color: rgb(255, 77, 157);
@@ -100,6 +114,32 @@ body{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
 }
+.ImageContainer {
+  width:50rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Adjust the gap between items */
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(148, 146, 146, 0.3);
+ 
+}
+.productContainer{
+  cursor:pointer;
+  width:10rem;
+  gap:1rem;
+  box-shadow: 0 4px 8px rgba(181, 176, 176, 0.3);
+}
+.productContainer:hover{
+  box-shadow: 0 4px 8px rgba(74, 72, 72, 0.3);
+  cursor: pointer;
+}
+
+
+.ProductImage {
+  max-width: 100%;
+  height: auto;
+}
+
 
 @media(max-width:768px){
   .offcanvas ul.nav-item li.nav-link{
@@ -123,7 +163,7 @@ body{
     display:flex;
     justify-content:center;
   }
-  .MainPageMart {
+  .MainPageMart,.ImageContainer {
    
     width: 25rem; /* Set the width as you intended */
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function MainPageMart() {
   return (
@@ -57,10 +58,13 @@ export default function MainPageMart() {
                 <p className='mx-4 my-2 text-center'>Lipton </p>
             </div>
             <div >
+                <Link to='/beverage'>
                 <button className='categories'>
                     <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/WhatsApp%20Image%202024-05-08%20at%2010.11.11%20AM.jpeg?height=96&dpi=1' width='80' height='80'/>
                 </button>
+                
                 <p className='mx-4 text-center' >Beverages</p>
+                </Link>
             </div>
             <div >
                 <button className='categories'>

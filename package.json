@@ -23,6 +23,7 @@
   "homepage": "https://github.com/MaryamZahid2003A/E-commerce_Website_MernStack#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
+    "axios": "^1.7.5",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",

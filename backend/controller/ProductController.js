@@ -10,6 +10,8 @@ const GetProduct = expressAsyncHandler(async (req, res) => {
                 _id: product._id,
                 name: product.name,
                 type: product.type,
+                img: product.img,
+
                 price: product.price,
                 description: product.description
             })));
