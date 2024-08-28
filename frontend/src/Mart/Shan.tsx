@@ -9,7 +9,7 @@ import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export default function Beverages() {
+export default function Shan() {
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
@@ -43,11 +43,11 @@ export default function Beverages() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get('/api/user/beverage');
+                const res = await axios.get('/api/user/shan');
                 setBeverageProduct(res.data);
                 console.log(res.data);
             } catch (error) {
-                console.log('Error in fetching the beverages');
+                console.log('Error in fetching the Shan Masala');
             }
         };
         fetchProduct();
@@ -79,7 +79,7 @@ export default function Beverages() {
                     </button>
                     {userInfo ? (
                         <div className="offcanvas offcanvas-start w-50" id="menu">
-                            <ul className="navbar-nav me-5 mb-2 text-white ms-auto text-end d-flex flex-column">
+                            <ul className="navbar-nav me-5 mb-2 text-white ms-auto text-end d-flex flex-col">
                                 <li className="nav-item text-center fs-5 rounded-1 px-3 me-2 py-2">
                                     <div className="d-flex flex-row">
                                         <p className="nav-item text-center fs-5 rounded-1 px-3 me-2">
@@ -121,7 +121,7 @@ export default function Beverages() {
             <div className=''>
                 <Link to='/mart' className='text-decoration-none'>
                     <div className=' h-100 d-flex flex-row text backListing'>
-                        <img src='https://cdn-icons-png.flaticon.com/128/9312/9312240.png' className='mx-4' height='30' width='30'/>
+                        <img src='https://cdn-icons-png.flaticon.com/128/9312/9312240.png' height='30' width='30'/>
                             <div className="dropdown">
                                 <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Shop By Department
@@ -145,7 +145,6 @@ export default function Beverages() {
                                 </ul>
                                 </div>
                     </div>
-                   
                 </Link>
             </div>
             <div className="ImageContainer mx-5">
@@ -178,7 +177,7 @@ export default function Beverages() {
                         </div>
                     ))
                 ) : (
-                    <span>No beverages found</span>
+                    <span>No Shan Product Found !</span>
                 )}
             </div>
             <section className="homecart d-none d-lg-block">

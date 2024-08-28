@@ -10,10 +10,12 @@ export default function MainPageMart() {
     <section className=''>
         <div className='MainPageMart'>
             <div >
+                <Link to='/shan' className='text-decoration-none text-black'>
                 <button className='categories'>
                     <img src='https://images.deliveryhero.io/image/darkstores/nv-global-catalog/pk/5229217c-7746-41ba-96ad-d17081976c27.png?height=104&dpi=1' width='80' height='80'/>
                 </button>
                 <p className='mx-4 text-center' >Shan</p>
+                </Link>
             </div>
             <div >
                 <button className='categories'>
@@ -58,7 +60,7 @@ export default function MainPageMart() {
                 <p className='mx-4 my-2 text-center'>Lipton </p>
             </div>
             <div >
-                <Link to='/beverage'>
+                <Link to='/beverage' className='text-decoration-none text-black'>
                 <button className='categories'>
                     <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/WhatsApp%20Image%202024-05-08%20at%2010.11.11%20AM.jpeg?height=96&dpi=1' width='80' height='80'/>
                 </button>

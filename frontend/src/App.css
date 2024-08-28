@@ -38,9 +38,9 @@ body{
   box-shadow: 0 4px 8px rgba(102, 102, 102, 0.3);
   height:100%;
   position: fixed;
-  margin-left:60%;
+  margin-left:70%;
   width:30%;
-  top: 20%; 
+  top: 30%; 
   color: rgb(164, 15, 82);
   padding: 10px; 
 }
@@ -129,10 +129,11 @@ body{
 
 }
 .ImageContainer {
-  width:50rem;
+  width:60rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem; /* Adjust the gap between items */
+  top:20%;
+  gap: 2rem; /* Adjust the gap between items */
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(148, 146, 146, 0.3);
  
@@ -156,6 +157,12 @@ body{
 }
 
 
+@media (max-width:968px){
+  .MainPageMart,.ImageContainer {
+   
+    width: 45rem; /* Set the width as you intended */
+  }
+}
 @media(max-width:768px){
   .offcanvas ul.nav-item li.nav-link{
       width:100%;
