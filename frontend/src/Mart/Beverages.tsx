@@ -16,6 +16,17 @@ export default function Beverages() {
     const navigate = useNavigate();
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
+    let [increment,setIncrement]=useState(0);
+    let [decrement,setDecrement]=useState(0);
+
+    const handleIncrement=()=>{
+        setIncrement(increment++)
+        return increment;
+    }
+    const handleDecrement=()=>{
+        setDecrement(decrement++)
+        return decrement;
+    }
 
     const handleSubmitLogout = async (e) => {
         try {
@@ -108,17 +119,40 @@ export default function Beverages() {
                 </div>
             </nav>
             <div className=''>
-                <Link to='/mart'>
-                    <p>Back To Store </p>
+                <Link to='/mart' className='text-decoration-none'>
+                    <div className=' h-100 d-flex flex-row text backListing'>
+                        <img src='https://cdn-icons-png.flaticon.com/128/9312/9312240.png' height='30' width='30'/>
+                            <p className='fs-5  mx-4 text-black'>Shop By Department</p>
+                    </div>
                 </Link>
             </div>
             <div className="ImageContainer mx-5">
                 {beverageProduct.length > 0 ? (
                     beverageProduct.map((product) => (
-                        <div className='bg-light p-1 border-1 border-light productContainer ' key={product._id}>
+                        <div className='bg-light p-2 border-1 border-light productContainer ' key={product._id}>
                             <img src={product.img} alt={product.name} height='100' width='100' className='rounded-1 ProductImage ' />
                             <p className='text-wrap '>{product.name}</p>
+                            <div className='d-flex flex-row justify-content-between'>
                             <p className='text-danger'>Rs .{product.price}</p>
+                                <div className='d-flex flex-row '>
+                                    {increment<2?
+                                    <div className='d-flex w-100  h-75 imageHolder '>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-2 my-1 incrementimage' height='15' width='15' onClick={handleDecrement}/>
+                                        <p >{increment}</p>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-2 my-1 incrementimage' height='20' width='20' onClick={handleIncrement}/>
+                                    </div>
+                                    :
+                                    <div className='d-flex flex-row h-75 imageHolder'>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-2 my-1 incrementimage' height='15' width='15' onClick={handleDecrement}/>
+                                        <p >{increment}</p>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-2 my-1 incrementimage' height='20' width='20' onClick={handleIncrement}/>
+                                    </div>
+                                        
+                                }
+                                    
+                                </div>
+                            </div>
+
                         </div>
                     ))
                 ) : (

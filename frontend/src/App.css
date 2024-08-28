@@ -2,7 +2,7 @@ body{
   background-color:white;
 }
 .navbar{
-  background-color:rgb(255, 77, 157);
+  background-color:rgb(216, 1, 98);
   width:auto;
   height:auto;
 }
@@ -15,6 +15,11 @@ body{
   border-bottom:2px solid white;
   transition:all 3s;
 
+}
+.backListing{
+  background-color:rgb(224, 223, 223);
+  padding:0.6rem;
+  text-decoration:none;
 }
 .offcanvas{
   background-color:rgb(255, 77, 157);
@@ -44,10 +49,19 @@ body{
   flex-wrap: wrap;
   width:50rem;
 }
-
+.imageHolder{
+  background-color:rgb(253, 236, 245);
+  border-radius:0.3rem;
+}
 .imageCarousel{
   width:50rem;
   height:30rem;
+}
+.incrementimage:hover{
+  background-color:rgb(150, 138, 145);
+  border-radius:0.5rem;
+  padding:0.1rem;
+  transition: all 0.1ms;
 }
 .footer{
   width:100%;
@@ -123,6 +137,7 @@ body{
   box-shadow: 0 4px 8px rgba(148, 146, 146, 0.3);
  
 }
+
 .productContainer{
   cursor:pointer;
   width:10rem;
