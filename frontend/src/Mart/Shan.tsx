@@ -9,6 +9,8 @@ import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+let count=0;
+
 export default function Shan() {
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
@@ -19,13 +21,19 @@ export default function Shan() {
     let [increment,setIncrement]=useState(0);
     let [decrement,setDecrement]=useState(0);
 
-    const handleIncrement=()=>{
-        setIncrement(increment++)
-        return increment;
+    const handleIncrement=(id)=>{
+        const update=beverageProduct.map((product)=>(
+            product._id==id? {...product,quantity:product.quantity+1} : product
+                
+        ))
+        setBeverageProduct(update)
     }
-    const handleDecrement=()=>{
-        setDecrement(decrement++)
-        return decrement;
+    const handleDecrement=(id)=>{
+       const update= beverageProduct.map((product)=>(
+            (product._id==id? (product.quantity>0? {...product,quantity:product.quantity-1 }:product)
+             :product)        
+        ))
+        setBeverageProduct(update)
     }
 
     const handleSubmitLogout = async (e) => {
@@ -45,9 +53,10 @@ export default function Shan() {
             try {
                 const res = await axios.get('/api/user/shan');
                 setBeverageProduct(res.data);
-                console.log(res.data);
+                console.log(res.data)
+
             } catch (error) {
-                console.log('Error in fetching the Shan Masala');
+                console.log('Error in fetching the beverages');
             }
         };
         fetchProduct();
@@ -79,7 +88,7 @@ export default function Shan() {
                     </button>
                     {userInfo ? (
                         <div className="offcanvas offcanvas-start w-50" id="menu">
-                            <ul className="navbar-nav me-5 mb-2 text-white ms-auto text-end d-flex flex-col">
+                            <ul className="navbar-nav me-5 mb-2 text-white ms-auto text-end d-flex flex-column">
                                 <li className="nav-item text-center fs-5 rounded-1 px-3 me-2 py-2">
                                     <div className="d-flex flex-row">
                                         <p className="nav-item text-center fs-5 rounded-1 px-3 me-2">
@@ -121,7 +130,7 @@ export default function Shan() {
             <div className=''>
                 <Link to='/mart' className='text-decoration-none'>
                     <div className=' h-100 d-flex flex-row text backListing'>
-                        <img src='https://cdn-icons-png.flaticon.com/128/9312/9312240.png' height='30' width='30'/>
+                        <img src='https://cdn-icons-png.flaticon.com/128/9312/9312240.png' className='mx-4' height='30' width='30'/>
                             <div className="dropdown">
                                 <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Shop By Department
@@ -145,6 +154,7 @@ export default function Shan() {
                                 </ul>
                                 </div>
                     </div>
+                   
                 </Link>
             </div>
             <div className="ImageContainer mx-5">
@@ -154,19 +164,19 @@ export default function Shan() {
                             <img src={product.img} alt={product.name} height='100' width='100' className='rounded-1 ProductImage ' />
                             <p className='text-wrap '>{product.name}</p>
                             <div className='d-flex flex-row justify-content-between'>
-                            <p className='text-danger'>Rs. {product.price}</p>
+                            <p className='text-danger '>Rs.{product.price}</p>
                                 <div className='d-flex flex-row '>
-                                    {increment<2?
+                                    {product.quantity<2?
                                     <div className='d-flex w-100  h-75 imageHolder '>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-2 my-1 incrementimage' height='15' width='15' onClick={handleDecrement}/>
-                                        <p >{increment}</p>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-2 my-1 incrementimage' height='20' width='20' onClick={handleIncrement}/>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-2 my-1 ' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                        <p >{product.quantity}</p>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-2 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
                                     </div>
                                     :
                                     <div className='d-flex flex-row h-75 imageHolder'>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-2 my-1 incrementimage' height='15' width='15' onClick={handleDecrement}/>
-                                        <p >{increment}</p>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-2 my-1 incrementimage' height='20' width='20' onClick={handleIncrement}/>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-2 my-1 incrementimage' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                        <p >{product.quantity}</p>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-2 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
                                     </div>
                                         
                                 }
@@ -177,7 +187,7 @@ export default function Shan() {
                         </div>
                     ))
                 ) : (
-                    <span>No Shan Product Found !</span>
+                    <span>No Shan Product found</span>
                 )}
             </div>
             <section className="homecart d-none d-lg-block">

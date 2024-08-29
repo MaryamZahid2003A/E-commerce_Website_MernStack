@@ -58,9 +58,9 @@ body{
   height:30rem;
 }
 .incrementimage:hover{
-  background-color:rgb(150, 138, 145);
+  background-color:rgb(174, 174, 174);
   border-radius:0.5rem;
-  padding:0.1rem;
+  padding:0.2rem;
   transition: all 0.1ms;
 }
 .footer{

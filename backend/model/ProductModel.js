@@ -18,6 +18,10 @@ const schema=mongoose.Schema({
     price:{
         type:Number,
     }
+    ,
+    quantity:{
+        type:Number,
+    }
 },{
     timeStamps:true
 })

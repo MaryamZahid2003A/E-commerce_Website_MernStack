@@ -9,6 +9,8 @@ import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+let count=0;
+
 export default function Beverages() {
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
@@ -19,13 +21,19 @@ export default function Beverages() {
     let [increment,setIncrement]=useState(0);
     let [decrement,setDecrement]=useState(0);
 
-    const handleIncrement=()=>{
-        setIncrement(increment++)
-        return increment;
+    const handleIncrement=(id)=>{
+        const update=beverageProduct.map((product)=>(
+            product._id==id? {...product,quantity:product.quantity+1} : product
+                
+        ))
+        setBeverageProduct(update)
     }
-    const handleDecrement=()=>{
-        setDecrement(decrement++)
-        return decrement;
+    const handleDecrement=(id)=>{
+       const update= beverageProduct.map((product)=>(
+            (product._id==id? (product.quantity>0? {...product,quantity:product.quantity-1 }:product)
+             :product)        
+        ))
+        setBeverageProduct(update)
     }
 
     const handleSubmitLogout = async (e) => {
@@ -45,7 +53,8 @@ export default function Beverages() {
             try {
                 const res = await axios.get('/api/user/beverage');
                 setBeverageProduct(res.data);
-                console.log(res.data);
+                console.log(res.data)
+
             } catch (error) {
                 console.log('Error in fetching the beverages');
             }
@@ -155,19 +164,19 @@ export default function Beverages() {
                             <img src={product.img} alt={product.name} height='100' width='100' className='rounded-1 ProductImage ' />
                             <p className='text-wrap '>{product.name}</p>
                             <div className='d-flex flex-row justify-content-between'>
-                            <p className='text-danger'>Rs. {product.price}</p>
+                            <p className='text-danger '>Rs.{product.price}</p>
                                 <div className='d-flex flex-row '>
-                                    {increment<2?
+                                    {product.quantity<2?
                                     <div className='d-flex w-100  h-75 imageHolder '>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-2 my-1 incrementimage' height='15' width='15' onClick={handleDecrement}/>
-                                        <p >{increment}</p>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-2 my-1 incrementimage' height='20' width='20' onClick={handleIncrement}/>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-2 my-1 ' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                        <p >{product.quantity}</p>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-2 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
                                     </div>
                                     :
                                     <div className='d-flex flex-row h-75 imageHolder'>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-2 my-1 incrementimage' height='15' width='15' onClick={handleDecrement}/>
-                                        <p >{increment}</p>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-2 my-1 incrementimage' height='20' width='20' onClick={handleIncrement}/>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-2 my-1 incrementimage' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                        <p >{product.quantity}</p>
+                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-2 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
                                     </div>
                                         
                                 }

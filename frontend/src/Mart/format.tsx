@@ -4,5 +4,6 @@ export type ProductFormat={
     type:string,
     img:string,
     description:string,
-    price:number
+    price:number,
+    quantity:number
 }

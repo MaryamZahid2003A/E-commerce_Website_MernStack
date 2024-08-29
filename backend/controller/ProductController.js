@@ -11,7 +11,7 @@ const GetProduct = expressAsyncHandler(async (req, res) => {
                 name: product.name,
                 type: product.type,
                 img: product.img,
-
+                quantity:product.quantity,
                 price: product.price,
                 description: product.description
             })));
@@ -36,7 +36,7 @@ const GetShan= expressAsyncHandler(async (req, res) => {
                 name: product.name,
                 type: product.type,
                 img: product.img,
-
+                quantity:product.quantity,
                 price: product.price,
                 description: product.description
             })));
