@@ -7,6 +7,7 @@ import MainMart from './Mart/MainMart';
 import Beverages from './Mart/Beverages.tsx';
 import MainPageMart from './Mart/MainPageMart.js';
 import Shan from './Mart/Shan.tsx';
+import Fruit from './Mart/Fruit.tsx';
 function App() {
   return (
     <div>
@@ -15,11 +16,8 @@ function App() {
      <Route path='/mart' element={<MainMart/>}/>
      <Route path='/beverage' element={<Beverages/>}/>
      <Route path='/shan' element={<Shan/>}/>
-
+     <Route path='/fruit' element={<Fruit/>}/>
      <Route path='/MainPageMart' element={<MainPageMart/>}/>
-
-
-
      </Routes>
     </div>
   );

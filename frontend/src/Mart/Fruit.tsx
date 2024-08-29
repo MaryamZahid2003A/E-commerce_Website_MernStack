@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import Cart from './Cart.tsx'; 
 let count=0;
 
-export default function Beverages() {
+export default function Fruit() {
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
@@ -51,7 +51,7 @@ export default function Beverages() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get('/api/user/beverage');
+                const res = await axios.get('/api/user/fruit');
                 setBeverageProduct(res.data);
                 console.log(res.data)
 
@@ -187,7 +187,7 @@ export default function Beverages() {
                         </div>
                     ))
                 ) : (
-                    <span>No beverages found</span>
+                    <span>No Fruit & Vegetables Found</span>
                 )}
             </div>
             <section className="homecart d-none d-lg-block">

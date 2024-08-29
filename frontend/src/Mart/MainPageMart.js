@@ -18,10 +18,12 @@ export default function MainPageMart() {
                 </Link>
             </div>
             <div >
-                <button className='categories'>
-                    <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/Native_Fruits-vege_216x216px.png?height=104&dpi=1' width='80' height='80'/> 
-                </button>
-                <p className='mx-4 text-center'>Fruits</p>
+                <Link to='/fruit' className='text-decoration-none text-black'>
+                    <button className='categories'>
+                        <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/Native_Fruits-vege_216x216px.png?height=104&dpi=1' width='80' height='80'/> 
+                    </button>
+                    <p className='mx-4 text-center'>Fruits</p>
+                </Link>
             </div>
             <div >
                 <button className='categories'>
