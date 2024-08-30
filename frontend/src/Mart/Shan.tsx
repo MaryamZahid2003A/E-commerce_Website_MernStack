@@ -8,10 +8,15 @@ import { setLogout } from '../store/UserSlice.js';
 import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Cart from './Cart.tsx'; 
+
 
 let count=0;
 
 export default function Shan() {
+    const location = useLocation();
+    const {cartProduct,setCartProduct}=location.state || {};
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
@@ -191,8 +196,7 @@ export default function Shan() {
                 )}
             </div>
             <section className="homecart d-none d-lg-block">
-                <h1 className='text-center fs-4'>My Cart</h1>
-                <button className='btn btn-primary ' type='button'> checkout</button>
+                <Cart cartProduct={cartProduct} setCartProduct={setCartProduct}/>
             </section>
         </div>
     );

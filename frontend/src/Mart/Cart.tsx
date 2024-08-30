@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function Cart(props) {
+    console.log(`i am in cart${props.cartProduct}`)
     const handleIncrement = (id) => {
         const update = props.cartProduct.map((product) =>
             product._id === id ? { ...product, quantity: product.quantity + 1 } : product

@@ -142,7 +142,7 @@ export default function MainMart(props) {
                     <button className='btn btn-primary ' type='button'> checkout</button>
                 </section>
             </div>
-            <MainPageMart/>
+            <MainPageMart  cartProduct={cartProduct} setCartProduct={setCartProduct}/>
             <div className="d-flex flex-row justify-content-center my-5 ">
                 <div id="Autoplaying" className="carousel slide w-100 carousel-check" data-bs-ride="carousel">
                     <div className="carousel-inner">
@@ -179,7 +179,6 @@ export default function MainMart(props) {
                 </div>
                 <section className="   homecart d-none d-lg-block">
                     <h1 className='text-center fs-4'>My Cart</h1>
-                    <Cart cartProduct={cartProduct} setCartProduct={setCartProduct}/>
                     <button className='btn btn-primary ' type='button'> checkout</button>
                 </section>
             </div>

@@ -65,11 +65,10 @@ export default function MainPageMart({cartProduct,setCartProduct}) {
                 <p className='mx-4 my-2 text-center'>Lipton </p>
             </div>
             <div >
-                <Link to='/beverage'  state={{cartProduct,setCartProduct}} className='text-decoration-none text-black'>
+                <Link to='/beverage'  state={{cartProduct}} className='text-decoration-none text-black'>
                 <button className='categories'>
                     <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/WhatsApp%20Image%202024-05-08%20at%2010.11.11%20AM.jpeg?height=96&dpi=1' width='80' height='80'/>
                 </button>
-                
                 <p className='mx-4 text-center' >Beverages</p>
                 </Link>
             </div>

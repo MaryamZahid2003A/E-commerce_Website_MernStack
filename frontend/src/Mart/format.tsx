@@ -7,3 +7,4 @@ export type ProductFormat={
     price:number,
     quantity:number
 }
+

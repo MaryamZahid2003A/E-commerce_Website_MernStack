@@ -13,16 +13,16 @@ import { useLocation } from 'react-router-dom';
 let count=0;
 
 export default function Beverages() {
+    console.log('hello i am in beverages section')
     const location = useLocation();
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {cartProduct,setCartProduct}=location.state || {};
+    const {cartProduct}=location.state || {} ;
+    console.log(`what happend${cartProduct}`)
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
-    let [increment,setIncrement]=useState(0);
-    let [decrement,setDecrement]=useState(0);
 
     const handleIncrement=(id)=>{
         const update=beverageProduct.map((product)=>(
@@ -30,16 +30,23 @@ export default function Beverages() {
 
                 
         ))
-        setCartProduct(update)
         setBeverageProduct(update)
+        beverageProduct.map((product)=>(
+            product._id==id? (product) : <p></p>    
+        ))
+        console.log(' i am in increment')
+        console.log(cartProduct)
+
     }
     const handleDecrement=(id)=>{
        const update= beverageProduct.map((product)=>(
             (product._id==id? (product.quantity>0? {...product,quantity:product.quantity-1 }:product)
              :product)        
         ))
-        setCartProduct(update)
         setBeverageProduct(update)
+        beverageProduct.map((product)=>(
+            product._id==id? setCartProduct(product) : <p></p>    
+        ))
     }
 
     const handleSubmitLogout = async (e) => {
@@ -196,9 +203,15 @@ export default function Beverages() {
                     <span>No beverages found</span>
                 )}
             </div>
-            <section className="homecart d-none d-lg-block">
-                <Cart cartProduct={cartProduct} setCartProduct={setCartProduct}/>
-            </section>
+            <div>
+                <section className="homecart d-none d-lg-block">
+                    {cartProduct.length === 0 ? (
+                        <p>Nothing in the cart</p>
+                    ) : (
+                        <Cart cartProduct={cartProduct} setCartProduct={setCartProduct} />
+                    )}
+                </section>
+            </div>
         </div>
     );
 }
