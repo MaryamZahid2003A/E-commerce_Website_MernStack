@@ -1,17 +1,23 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setLogout } from '../store/UserSlice';
-import { useLogoutMutation } from '../store/UserApiSlice';
+import { setLogout } from '../store/UserSlice.js';
+import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useDispatch } from 'react-redux';
-import MainPageMart from './MainPageMart';
-import Footer from '../HomeLayout/Footer';
+import MainPageMart from './MainPageMart.tsx';
+import Footer from '../HomeLayout/Footer.js';
+import { ProductFormat } from './format.tsx';
+import { useState } from 'react';
+import Cart from './Cart.tsx'
+
 
 export default function MainMart(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
+    const [cartProduct,setCartProduct]=useState<ProductFormat[]>([])
+
 
     const handleSubmitLogout = async (e) => {
         try {
@@ -173,6 +179,7 @@ export default function MainMart(props) {
                 </div>
                 <section className="   homecart d-none d-lg-block">
                     <h1 className='text-center fs-4'>My Cart</h1>
+                    <Cart cartProduct={cartProduct} setCartProduct={setCartProduct}/>
                     <button className='btn btn-primary ' type='button'> checkout</button>
                 </section>
             </div>

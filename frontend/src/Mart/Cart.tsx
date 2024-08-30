@@ -2,21 +2,21 @@ import React from 'react';
 
 export default function Cart(props) {
     const handleIncrement = (id) => {
-        const update = props.beverageProduct.map((product) =>
+        const update = props.cartProduct.map((product) =>
             product._id === id ? { ...product, quantity: product.quantity + 1 } : product
         );
-        props.setBeverageProduct(update);
+        props.setCartProduct(update);
     };
 
     const handleDecrement = (id) => {
-        const update = props.beverageProduct.map((product) =>
+        const update = props.cartProduct.map((product) =>
             product._id === id
                 ? product.quantity > 0
                     ? { ...product, quantity: product.quantity - 1 }
                     : product
                 : product
         );
-        props.setBeverageProduct(update);
+        props.setCartProduct(update);
     };
 
     return (
@@ -45,7 +45,7 @@ export default function Cart(props) {
                     />
                 </div>
             </div>
-            {props.beverageProduct.map((product) => (
+            {props.cartProduct.map((product) => (
                 <div key={product._id}>
                     {product.quantity > 0 ? (
                         <div className='d-flex flex-row justify-content-between my-5'>

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { ProductFormat } from './format.tsx';
 
-export default function MainPageMart() {
+
+export default function MainPageMart({cartProduct,setCartProduct}) {
+    console.log(`cart product ${cartProduct}`)
   return (
     <div className='mx-5' >
       <section>
@@ -10,7 +13,7 @@ export default function MainPageMart() {
     <section className=''>
         <div className='MainPageMart'>
             <div >
-                <Link to='/shan' className='text-decoration-none text-black'>
+                <Link to='/shan' state={{cartProduct,setCartProduct}} className='text-decoration-none text-black'>
                 <button className='categories'>
                     <img src='https://images.deliveryhero.io/image/darkstores/nv-global-catalog/pk/5229217c-7746-41ba-96ad-d17081976c27.png?height=104&dpi=1' width='80' height='80'/>
                 </button>
@@ -18,7 +21,7 @@ export default function MainPageMart() {
                 </Link>
             </div>
             <div >
-                <Link to='/fruit' className='text-decoration-none text-black'>
+                <Link to='/fruit'  state={{cartProduct,setCartProduct}} className='text-decoration-none text-black'>
                     <button className='categories'>
                         <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/Native_Fruits-vege_216x216px.png?height=104&dpi=1' width='80' height='80'/> 
                     </button>
@@ -62,7 +65,7 @@ export default function MainPageMart() {
                 <p className='mx-4 my-2 text-center'>Lipton </p>
             </div>
             <div >
-                <Link to='/beverage' className='text-decoration-none text-black'>
+                <Link to='/beverage'  state={{cartProduct,setCartProduct}} className='text-decoration-none text-black'>
                 <button className='categories'>
                     <img src='https://images.deliveryhero.io/image/nv/APAC-Category-3D-Icon/PK-3D-ICONS/WhatsApp%20Image%202024-05-08%20at%2010.11.11%20AM.jpeg?height=96&dpi=1' width='80' height='80'/>
                 </button>

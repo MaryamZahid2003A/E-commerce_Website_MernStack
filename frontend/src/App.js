@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Routes,Route } from 'react-router-dom';
 import Home from './HomeLayout/Home';
-import MainMart from './Mart/MainMart';
+import MainMart from './Mart/MainMart.tsx';
 import Beverages from './Mart/Beverages.tsx';
-import MainPageMart from './Mart/MainPageMart.js';
+import MainPageMart from './Mart/MainPageMart.tsx';
 import Shan from './Mart/Shan.tsx';
 import Fruit from './Mart/Fruit.tsx';
 function App() {

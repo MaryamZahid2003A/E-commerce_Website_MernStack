@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import { useLoginMutation,useRegisterMutation,useLogoutMutation } from '../store/UserApiSlice';
 import { setCredentials,setLogout} from '../store/UserSlice';
 import { useDispatch } from 'react-redux';
-import MainMart from '../Mart/MainMart';
+import MainMart from '../Mart/MainMart.tsx';
 
 
 export default function HomeScreen() {

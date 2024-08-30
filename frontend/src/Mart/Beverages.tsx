@@ -9,13 +9,16 @@ import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Cart from './Cart.tsx'; 
+import { useLocation } from 'react-router-dom';
 let count=0;
 
 export default function Beverages() {
+    const location = useLocation();
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {cartProduct,setCartProduct}=location.state || {};
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
     let [increment,setIncrement]=useState(0);
@@ -24,8 +27,10 @@ export default function Beverages() {
     const handleIncrement=(id)=>{
         const update=beverageProduct.map((product)=>(
             product._id==id? {...product,quantity:product.quantity+1} : product
+
                 
         ))
+        setCartProduct(update)
         setBeverageProduct(update)
     }
     const handleDecrement=(id)=>{
@@ -33,6 +38,7 @@ export default function Beverages() {
             (product._id==id? (product.quantity>0? {...product,quantity:product.quantity-1 }:product)
              :product)        
         ))
+        setCartProduct(update)
         setBeverageProduct(update)
     }
 
@@ -191,7 +197,7 @@ export default function Beverages() {
                 )}
             </div>
             <section className="homecart d-none d-lg-block">
-                <Cart beverageProduct={beverageProduct} setBeverageProduct={setBeverageProduct}/>
+                <Cart cartProduct={cartProduct} setCartProduct={setCartProduct}/>
             </section>
         </div>
     );
