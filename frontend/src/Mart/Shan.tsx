@@ -8,38 +8,60 @@ import { setLogout } from '../store/UserSlice.js';
 import { useLogoutMutation } from '../store/UserApiSlice.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import Cart from './Cart.tsx'; 
-
-
+import { useLocation } from 'react-router-dom';
+import { useCart } from './CartProvider.js';
 let count=0;
 
 export default function Shan() {
     const location = useLocation();
-    const {cartProduct,setCartProduct}=location.state || {};
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {cartProduct,setCartProduct}=useCart();
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
-    let [increment,setIncrement]=useState(0);
-    let [decrement,setDecrement]=useState(0);
 
     const handleIncrement=(id)=>{
         const update=beverageProduct.map((product)=>(
             product._id==id? {...product,quantity:product.quantity+1} : product
-                
         ))
         setBeverageProduct(update)
+
+        const existingCartProduct = cartProduct.find((item) => item._id === id);
+            if (existingCartProduct) {
+                const updatedCart = cartProduct.map((item) =>
+                    item._id === id ? { ...item, quantity: item.quantity + 1 } : item
+                );
+                setCartProduct(updatedCart);
+            } else {
+                const productToAdd = beverageProduct.find((product) => product._id === id);
+                if (productToAdd) {
+                    setCartProduct([...cartProduct, { ...productToAdd, quantity: 1 }]);
+                }
+            }
     }
+
     const handleDecrement=(id)=>{
        const update= beverageProduct.map((product)=>(
             (product._id==id? (product.quantity>0? {...product,quantity:product.quantity-1 }:product)
              :product)        
         ))
         setBeverageProduct(update)
-    }
+        const existingCartProduct = cartProduct.find((item) => item._id === id);
+            if (existingCartProduct) {
+                const updatedCart = cartProduct.map((item) =>
+                    item._id === id ? { ...item, quantity: item.quantity - 1 } : item
+                );
+                setCartProduct(updatedCart);
+            } else {
+                const productToAdd = beverageProduct.find((product) => product._id === id);
+                if (productToAdd) {
+                    setCartProduct([...cartProduct, { ...productToAdd, quantity: 1 }]);
+                }
+            }
+        }
 
     const handleSubmitLogout = async (e) => {
         try {
@@ -61,7 +83,7 @@ export default function Shan() {
                 console.log(res.data)
 
             } catch (error) {
-                console.log('Error in fetching the beverages');
+                console.log('Error in fetching the shan');
             }
         };
         fetchProduct();
@@ -195,9 +217,18 @@ export default function Shan() {
                     <span>No Shan Product found</span>
                 )}
             </div>
-            <section className="homecart d-none d-lg-block">
-                <Cart cartProduct={cartProduct} setCartProduct={setCartProduct}/>
-            </section>
+            <div>
+                <section className="homecart d-none d-lg-block">
+                    {cartProduct.length === 0 ? (
+                        <p>Nothing in the cart</p>
+                    ) : (
+                        <div>
+                        <Cart handleIncrement={handleIncrement} handleDecrement={handleDecrement} cartProduct={cartProduct} />
+                        <p>{setCartProduct}</p>
+                        </div>
+                    )}
+                </section>
+            </div>
         </div>
     );
 }

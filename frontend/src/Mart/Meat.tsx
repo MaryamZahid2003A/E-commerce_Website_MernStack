@@ -13,15 +13,13 @@ import { useLocation } from 'react-router-dom';
 import { useCart } from './CartProvider.js';
 let count=0;
 
-export default function Beverages() {
-    console.log('hello i am in beverages section')
+export default function Meat() {
     const location = useLocation();
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {cartProduct,setCartProduct}=useCart();
-    console.log(`what happend${cartProduct}`)
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
 
@@ -80,12 +78,12 @@ export default function Beverages() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get('/api/user/beverage');
+                const res = await axios.get('/api/user/meat');
                 setBeverageProduct(res.data);
                 console.log(res.data)
 
             } catch (error) {
-                console.log('Error in fetching the beverages');
+                console.log('Error in fetching the shan');
             }
         };
         fetchProduct();
@@ -216,7 +214,7 @@ export default function Beverages() {
                         </div>
                     ))
                 ) : (
-                    <span>No beverages found</span>
+                    <span>No Shan Product found</span>
                 )}
             </div>
             <div>

@@ -1,25 +1,7 @@
 import React from 'react';
 
 export default function Cart(props) {
-    console.log(`i am in cart${props.cartProduct}`)
-    const handleIncrement = (id) => {
-        const update = props.cartProduct.map((product) =>
-            product._id === id ? { ...product, quantity: product.quantity + 1 } : product
-        );
-        props.setCartProduct(update);
-    };
-
-    const handleDecrement = (id) => {
-        const update = props.cartProduct.map((product) =>
-            product._id === id
-                ? product.quantity > 0
-                    ? { ...product, quantity: product.quantity - 1 }
-                    : product
-                : product
-        );
-        props.setCartProduct(update);
-    };
-
+    
     return (
         <div className='overflow-auto' style={{ maxHeight: '500px' }}>
             <div className='d-flex flex-column justify-content-center align-items-center'>
@@ -66,7 +48,7 @@ export default function Cart(props) {
                                         className='mx-2 my-1 incrementimage'
                                         height='18'
                                         width='18'
-                                        onClick={() => handleDecrement(product._id)}
+                                        onClick={() => props.handleDecrement(product._id)}
                                     />
                                     <p className='text-black'>{product.quantity}</p>
                                     <img
@@ -74,7 +56,7 @@ export default function Cart(props) {
                                         className='mx-2 my-1 incrementimage'
                                         height='20'
                                         width='20'
-                                        onClick={() => handleIncrement(product._id)}
+                                        onClick={() => props.handleIncrement(product._id)}
                                     />
                                 </div>
                             </div>

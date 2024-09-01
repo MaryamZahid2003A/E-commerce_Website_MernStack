@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { useCart } from './CartProvider.js';
 let count=0;
 
-export default function Beverages() {
+export default function Dairy() {
     console.log('hello i am in beverages section')
     const location = useLocation();
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
@@ -80,12 +80,12 @@ export default function Beverages() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get('/api/user/beverage');
+                const res = await axios.get('/api/user/dairy');
                 setBeverageProduct(res.data);
                 console.log(res.data)
 
             } catch (error) {
-                console.log('Error in fetching the beverages');
+                console.log('Error in fetching the dairy product');
             }
         };
         fetchProduct();
@@ -216,7 +216,7 @@ export default function Beverages() {
                         </div>
                     ))
                 ) : (
-                    <span>No beverages found</span>
+                    <span>No Dairy Product found</span>
                 )}
             </div>
             <div>
