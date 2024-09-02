@@ -12,7 +12,7 @@ const UserSlice=createSlice({
             state.userInfo=action.payload
             localStorage.setItem('userInfo',JSON.stringify(action.payload))
         },
-        setLogout : (state,action)=>{
+        setLogout : (state)=>{
             state.userInfo=null;
             localStorage.removeItem('userInfo')
             console.log('inside the slice')

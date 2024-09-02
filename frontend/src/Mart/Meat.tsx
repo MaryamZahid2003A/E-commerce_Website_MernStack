@@ -14,12 +14,14 @@ import { useCart } from './CartProvider.js';
 let count=0;
 
 export default function Meat() {
+    console.log('hello i am in beverages section')
     const location = useLocation();
     const [beverageProduct, setBeverageProduct] = useState<ProductFormat[]>([]);
     const [beverage] = useBeverageMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {cartProduct,setCartProduct}=useCart();
+    console.log(`what happend${cartProduct}`)
     const { userInfo } = useSelector((state) => state.auth1);
     const [logout] = useLogoutMutation();
 
@@ -63,18 +65,18 @@ export default function Meat() {
             }
         }
 
-    const handleSubmitLogout = async (e) => {
-        try {
+        const handleSubmitLogout = async (e) => {
             e.preventDefault();
-            await logout().unwrap();
-            dispatch(setLogout());
-            navigate('/');
-            console.log('Logout Successfully');
-        } catch (error) {
-            console.log(error?.data?.message || error.message);
-        }
-    };
-
+            try {
+                await logout().unwrap(); 
+                dispatch(setLogout());
+                navigate('/');
+                console.log('Logout Successfully');
+            } catch (error) {
+                console.log(error?.data?.message || error.message);
+            }
+        };
+        
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -83,7 +85,7 @@ export default function Meat() {
                 console.log(res.data)
 
             } catch (error) {
-                console.log('Error in fetching the shan');
+                console.log('Error in fetching the beverages');
             }
         };
         fetchProduct();
@@ -164,10 +166,10 @@ export default function Meat() {
                                 </a>
 
                                 <ul className="dropdown-menu">
-                                    <Link to='/shan' className='text-decoration-none text-black'><a className="dropdown-item" href="#">Shan</a></Link>
-                                    <li><a className="dropdown-item" href="#">Fruits</a></li>
-                                    <li><a className="dropdown-item" href="#">Meat</a></li>
-                                    <li><a className="dropdown-item" href="#">Dairy Item</a></li>
+                                <Link to='/shan' className='text-decoration-none text-black'><a className="dropdown-item" href="#">Shan</a></Link>
+                                    <Link to='/fruit' className='text-decoration-none text-black'><a className="dropdown-item" href="#">Fruit</a></Link>
+                                    <Link to='/meat' className='text-decoration-none text-black'><a className="dropdown-item" href="#">Meat</a></Link>
+                                    <Link to='/dairy' className='text-decoration-none text-black'><a className="dropdown-item" href="#">Dairy</a></Link>
                                     <li><a className="dropdown-item" href="#">Bakery</a></li>
                                     <li><a className="dropdown-item" href="#">Icecream</a></li>
                                     <li><a className="dropdown-item" href="#">Snacks</a></li>
@@ -188,39 +190,108 @@ export default function Meat() {
                 {beverageProduct.length > 0 ? (
                     beverageProduct.map((product) => (
                         <div className='bg-light p-2 border-1 border-light productContainer ' key={product._id}>
+                            <div  className=" text-black text-center"  data-bs-toggle="modal" data-bs-target={`#expainModal-${product._id}`}>
                             <img src={product.img} alt={product.name} height='100' width='100' className='rounded-1 ProductImage ' />
                             <p className='text-wrap '>{product.name}</p>
-                            <div className='d-flex flex-row justify-content-between'>
-                            <p className='text-danger '>Rs.{product.price}</p>
-                                <div className='d-flex flex-row '>
-                                    {product.quantity<2?
-                                    <div className='d-flex w-100  h-75 imageHolder '>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-2 my-1 ' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
-                                        <p >{product.quantity}</p>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-2 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
-                                    </div>
-                                    :
-                                    <div className='d-flex flex-row h-75 imageHolder'>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-2 my-1 incrementimage' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
-                                        <p >{product.quantity}</p>
-                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-2 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
-                                    </div>
-                                        
-                                }
-                                    
+                                <div className='d-flex flex-row justify-content-between'>
+                                    <p className='text-danger '>Rs.{product.price}</p>
+                                       
                                 </div>
                             </div>
+                            <div className='d-flex flex-row '>
+                                            {product.quantity<2?
+                                            <div className='d-flex w-100  h-75 imageHolder '>
+                                                <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-4 my-1 ' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                                <p >{product.quantity}</p>
+                                                <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-4 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
+                                            </div>
+                                            :
+                                            <div className='d-flex flex-row h-75 imageHolder'>
+                                                <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-4 my-1 incrementimage' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                                <p >{product.quantity}</p>
+                                                <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-4 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
+                                            </div>
+                                                
+                                        }
+                                            
+                                        </div>
+                                <div className="modal fade w-100 explainform" id={`expainModal-${product._id}`} aria-hidden="true">
+                                        <div className="modal-dialog">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h1 className="modal-title fs-5 loginForm"> Product Detail</h1>
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <div className='d-flex flex-row'>
+                                                        <img src={product.img} className='explainImage'/>
+                                                        <div className=''>
+                                                             <h1 className='text-wrap fs-4 '>{product.name}</h1>
+                                                             <p className='text-wrap fs-5'>Rs . {product.price}</p>
+                                                                 <div className='d-flex flex-row '>
+                                                                    {product.quantity<2?
+                                                                    <div className='d-flex w-100  h-75 imageHolder '>
+                                                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917242.png' className='mx-4 my-1 ' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                                                        <p >{product.quantity}</p>
+                                                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png' className='mx-4 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
+                                                                    </div>
+                                                                    :
+                                                                    <div className='d-flex flex-row h-75 imageHolder'>
+                                                                        <img src='https://cdn-icons-png.flaticon.com/128/6797/6797369.png' className='mx-4 my-1 incrementimage' height='18' width='18' onClick={()=>handleDecrement(product._id)}/>
+                                                                        <p >{product.quantity}</p>
+                                                                        <img src='https://cdn-icons-png.flaticon.com/128/3917/3917179.png'  className='mx-4 my-1 incrementimage' height='20' width='20' onClick={()=>handleIncrement(product._id)}/>
+                                                                    </div>
+                                                                        
+                                                                }
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className='p-5'>
+                                                        <h1 className='fs-5'>Detail</h1>
+                                                    <p className='text-wrap fs-6'>{product.description}</p>
+                                                    </div>
 
+                                                </div>
+                                             </div>
+                                        </div>
+                              </div>
                         </div>
                     ))
                 ) : (
-                    <span>No Shan Product found</span>
+                    <span>No beverages found</span>
                 )}
             </div>
             <div>
                 <section className="homecart d-none d-lg-block">
                     {cartProduct.length === 0 ? (
-                        <p>Nothing in the cart</p>
+                         <div className='overflow-auto' style={{ maxHeight: '500px' }}>
+                         <div className='d-flex flex-column justify-content-center align-items-center'>
+                             <img
+                                 src='https://cdn-icons-gif.flaticon.com/10282/10282564.gif'
+                                 height='50'
+                                 width='50'
+                                 className='d-flex justify-content-center align-items-center'
+                                 alt='cart icon'
+                             />
+                             <span className='text-center my-2 mx-2 text-black fs-6'>
+                                 Standard Time 15 - 30 min
+                             </span>
+                             <div className='d-flex flex-row'>
+                                 <p className='text-center my-2 mx-2 text-black fs-4'>
+                                     You Order From Our Mart
+                                 </p>
+                                 <img
+                                     src='https://cdn-icons-png.flaticon.com/128/1915/1915316.png'
+                                     height='50'
+                                     width='50'
+                                     className='d-flex justify-content-center align-items-center mx-2'
+                                     alt='cart icon'
+                                 />
+                             </div>
+                         </div>
+                         <p className='fs-3  text-center my-5'>Nothing In The Cart</p>
+                     </div>
+                        
                     ) : (
                         <div>
                         <Cart handleIncrement={handleIncrement} handleDecrement={handleDecrement} cartProduct={cartProduct} />

@@ -44,6 +44,13 @@ body{
   color: rgb(164, 15, 82);
   padding: 10px; 
 }
+.explainImage{
+  width:50%;
+  height:50%;
+}
+.explainform{
+  width:100%;
+}
 .MainPageMart {
   display:flex;
   flex-wrap: wrap;
