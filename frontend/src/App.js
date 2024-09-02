@@ -11,6 +11,7 @@ import Fruit from './Mart/Fruit.tsx';
 import { CartProvider } from './Mart/CartProvider';
 import Dairy from './Mart/Dairy.tsx';
 import Meat from './Mart/Meat.tsx';
+import ProductExplain from './Mart/ProductExplain.tsx';
 function App() {
   return (
     <div>
@@ -23,8 +24,7 @@ function App() {
      <Route path='/fruit' element={<Fruit/>}/>
      <Route path='/meat' element={<Meat/>}/>
      <Route path='/dairy' element={<Dairy/>}/>
-
-
+     <Route path='/explain/:id' element={<ProductExplain/>}/>
      <Route path='/MainPageMart' element={<MainPageMart/>}/>
      </Routes>
      </CartProvider>

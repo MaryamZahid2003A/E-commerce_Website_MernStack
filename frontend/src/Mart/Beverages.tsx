@@ -190,6 +190,7 @@ export default function Beverages() {
                 {beverageProduct.length > 0 ? (
                     beverageProduct.map((product) => (
                         <div className='bg-light p-2 border-1 border-light productContainer ' key={product._id}>
+                            <div  className=" text-black text-center"  data-bs-toggle="modal" data-bs-target="#expainModal">
                             <img src={product.img} alt={product.name} height='100' width='100' className='rounded-1 ProductImage ' />
                             <p className='text-wrap '>{product.name}</p>
                             <div className='d-flex flex-row justify-content-between'>
@@ -212,7 +213,11 @@ export default function Beverages() {
                                     
                                 </div>
                             </div>
-
+                            </div>
+                            <div id='expainModal'>
+                                <div>
+                                    </div>
+                            </div>
                         </div>
                     ))
                 ) : (
